@@ -91,7 +91,6 @@ ORDER BY 1 DESC;
 -- Number of tracks released by month
 SELECT MONTHNAME(`Release Date`) AS Release_Month, COUNT(*) AS Track_Count
 FROM spotify_staging2
-WHERE `Release Date` IS NOT NULL
 GROUP BY Release_Month
 ORDER BY FIELD(Release_Month, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 
@@ -100,7 +99,6 @@ SELECT
   DAYNAME(`Release Date`) AS weekday,
   COUNT(*) AS track_count
 FROM spotify_staging2
-WHERE `Release Date` IS NOT NULL
 GROUP BY weekday
 ORDER BY FIELD(weekday, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
 
