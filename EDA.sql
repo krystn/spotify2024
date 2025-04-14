@@ -52,7 +52,8 @@ SELECT
 FROM spotify_staging2;
 
 -- Percent of explicit and clean tracks by year
-SELECT YEAR(`Release Date`) AS release_year,
+SELECT 
+  YEAR(`Release Date`) AS release_year,
   (SUM(`Explicit Track` = 1) / COUNT(*)) * 100 AS explicit_percentage,
   (SUM(`Explicit Track` = 0) / COUNT(*)) * 100 AS clean_percentage
 FROM spotify_staging2
@@ -83,13 +84,17 @@ LIMIT 10;
 
 -- TRENDS OVER TIME
 -- Number of tracks released per year
-SELECT YEAR(`Release Date`) AS Release_Year, COUNT(*) AS Track_Count
+SELECT 
+  YEAR(`Release Date`) AS Release_Year, 
+  COUNT(*) AS Track_Count
 FROM spotify_staging2
 GROUP BY Release_Year
 ORDER BY 1 DESC;
 
 -- Number of tracks released by month
-SELECT MONTHNAME(`Release Date`) AS Release_Month, COUNT(*) AS Track_Count
+SELECT 
+  MONTHNAME(`Release Date`) AS Release_Month, 
+  COUNT(*) AS Track_Count
 FROM spotify_staging2
 GROUP BY Release_Month
 ORDER BY FIELD(Release_Month, 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
@@ -103,7 +108,9 @@ GROUP BY weekday
 ORDER BY FIELD(weekday, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
 
 -- Release weekday and month of tracks with highest popularity
-SELECT Track, Artist, DAYNAME(`Release Date`) AS weekday, MONTHNAME(`Release Date`) AS Release_Month
+SELECT Track, Artist, 
+  DAYNAME(`Release Date`) AS weekday, 
+  MONTHNAME(`Release Date`) AS Release_Month
 FROM spotify_staging2
 ORDER BY `Spotify Popularity` DESC
 LIMIT 10;
