@@ -12,7 +12,7 @@ ORDER BY artist_count DESC
 LIMIT 10;
 
 -- Top 10 artists by total streams
-SELECT Artist, SUM(`Track Score`) AS total_streams
+SELECT Artist, SUM(`Spotify Streams`) AS total_streams
 FROM spotify_staging2
 GROUP BY Artist
 ORDER BY total_streams DESC
